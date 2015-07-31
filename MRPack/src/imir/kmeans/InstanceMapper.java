@@ -14,7 +14,7 @@ public class InstanceMapper extends MapReduceBase implements Mapper<LongWritable
 	
 	Clusters clusters = new Clusters();
 	
-	public void configure(JobConf job){
+	public void configureKMean(JobConf job){
 		try{
 			Path [] clustersFiles = DistributedCache.getLocalCacheFiles(job);
 			for (Path clustersFile : clustersFiles){
@@ -26,9 +26,20 @@ public class InstanceMapper extends MapReduceBase implements Mapper<LongWritable
 				System.err.println("Caught exception while parsing the cache file!");
 		}
 	}
+	public static void setOutput(){
+		mwordcount = null;
+		mwordcount.setWCflag(false);
+		mwordcount.setIIflag(false);
+		mwordcount.setKNNflag(false);
+		mwordcount.setKmeanflag(true);
+		mwordcount.set45flag(false);
+	}
 
-	public void map(LongWritable key, Text value, OutputCollector<ClusterId, Instance> output, Reporter reporter) throws IOException{
-		String line = value.toString();
+	/*public void map(LongWritable key, Text value, OutputCollector<ClusterId, Instance> output, Reporter reporter) throws IOException{
+		
+	}*/
+	public void knnMap(Text value, OutputCollector<Text, MapOutput> output){
+	String line = value.toString();
 		Instance instance = new Instance(line);
 		double currentdis = Double.MAX_VALUE;
 		double newdis; 
@@ -46,6 +57,6 @@ public class InstanceMapper extends MapReduceBase implements Mapper<LongWritable
 		catch(Exception ex){
 			ex.printStackTrace();
 		}
-	}
+		}
 
 }

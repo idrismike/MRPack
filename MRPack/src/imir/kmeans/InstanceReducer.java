@@ -8,7 +8,7 @@ import org.apache.hadoop.io.*;
 
 public class InstanceReducer extends MapReduceBase implements Reducer<ClusterId, Instance, Text, Text>{
 
-	public void reduce(ClusterId id, Iterator<Instance> instances, OutputCollector<Text, Text> output, Reporter reporter) throws IOException{
+	public void KmeanReduce(ClusterId id, Iterator<Instance> instances, OutputCollector<Text, Text> output, Reporter reporter) throws IOException{
 	Cluster cluresult = null;
 	while (instances.hasNext()){
 		if (cluresult == null){

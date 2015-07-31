@@ -26,6 +26,9 @@ public class WordCount {
 		mwordcount = null;
 		mwordcount.setWCflag(true);
 		mwordcount.setIIflag(false);
+		mwordcount.setKNNflag(false);
+		mwordcount.setKmeanflag(false);
+		mwordcount.set45flag(false);
 	}
 
 	public static void count(Text value, OutputCollector<Text, MapOutput> output ) throws IOException{

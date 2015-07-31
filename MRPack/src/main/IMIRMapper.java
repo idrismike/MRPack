@@ -41,6 +41,7 @@ public class IMIRMapper extends MapReduceBase implements Mapper<LongWritable, Te
 	public void configure(JobConf job) 
 	{
 		KnnMapper.configureKNN(job);
+		InstanceMapper.configureKMean(job);
 		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		writeDate("Mapper_Start",df.format(date));
@@ -94,6 +95,12 @@ public class IMIRMapper extends MapReduceBase implements Mapper<LongWritable, Te
 		/*   IMIR KNN Section   */
 		if (KnnMapper.inputFile.indexOf("outer") != -1 || KnnMapper.inputFile.indexOf("inner") != -1 )
 			KnnMapper.knnMap(value, output);
+			/*   IMIR KMeans Section   */
+			InstanceMapper.setOutput();
+			InstanceMapper.KMeanMap(value, output);
+			/*   IMIR C45 Section   */
+			C405.setOutput();
+			C405.C405Map(value, output);
 		
 	}
 	

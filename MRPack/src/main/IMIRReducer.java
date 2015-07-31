@@ -102,6 +102,14 @@ public class IMIRReducer extends MapReduceBase implements Reducer<Text, MapOutpu
 		if(iikey.substring(0, 5) == "NN:::" ){
 			KnnReducer.KnnReduce(key, values, output, reporter);
 		}
+		else
+		if(iikey.substring(0, 5) == "MEAN:::" ){
+			InstanceReducer.KmeanReduce(key, values, output, reporter);
+		}
+		else
+		if(iikey.substring(0, 5) == "C45:::" ){
+			Reducer.c45reduce(key, values, output, reporter);
+		}
 		
 		
 		

@@ -45,7 +45,14 @@ public class KnnMapper {
 			System.exit(-1);
 		}*/
 	}
-	
+	public static void setOutput(){
+		mwordcount = null;
+		mwordcount.setWCflag(false);
+		mwordcount.setIIflag(false);
+		mwordcount.setKNNflag(false);
+		mwordcount.setKmeanflag(true);
+		mwordcount.set45flag(false);
+	}
 	public static void knnMap(Text value, OutputCollector<Text, MapOutput> output ) throws IOException{
 		String[] parts = value.toString().split(" +");	
 		String recId = parts[recIdOffset];

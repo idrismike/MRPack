@@ -25,8 +25,11 @@ public class InvertedIndex {
 		//localoutput.one = zero;
 		localoutput.setIIflag(true);
 		localoutput.setWCflag(false);
+		mwordcount.setKNNflag(false);
+		mwordcount.setKmeanflag(false);
+		mwordcount.set45flag(false);
 	}
-	
+		
 	public static void index(Text value, OutputCollector<Text, MapOutput> output, Reporter reporter) throws IOException{
 		FileSplit filesplit = (FileSplit) reporter.getInputSplit();
         String fileName = filesplit.getPath().getName();
